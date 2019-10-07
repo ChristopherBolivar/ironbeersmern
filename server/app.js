@@ -26,7 +26,7 @@ app.use(nocache())
 app.use(
   cors({
     origin: (origin, cb) => {
-      cb(null, origin && origin.startsWith('http://localhost:'))
+      cb(null, origin && origin.startsWith('http://localhost:3000'))
     },
     optionsSuccessStatus: 200,
     credentials: true,
@@ -53,6 +53,7 @@ app.use(
 require('./passport')(app)
 
 app.use('/api', require('./routes/index'))
+app.use('/api', require('./routes/imgupload'))
 app.use('/api', require('./routes/auth'))
 app.use('/api/countries', require('./routes/countries'))
 
