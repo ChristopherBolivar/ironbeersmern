@@ -12,7 +12,13 @@ export default class camera extends Component {
 
     axios
       .post('http://localhost:5000/api/image-upload', { imageSrc })
-      .then(doc => console.log('works?', doc))
+      .then(doc =>
+        console.log(
+          'works?',
+          doc.data.stuff.regions[0].lines.forEach(obj => obj)
+        )
+      )
+
       .catch(err => console.error(err))
   }
 
@@ -27,10 +33,10 @@ export default class camera extends Component {
       <>
         <Webcam
           audio={false}
-          height={350}
+          height={window.innerHeight}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={350}
+          width={window.innerWidth}
           videoConstraints={videoConstraints}
         />
         <button onClick={this.capture}>Capture photo</button>

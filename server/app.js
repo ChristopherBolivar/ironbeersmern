@@ -1,7 +1,7 @@
 const path = require('path')
 require('dotenv').config({ path: path.join(__dirname, '.env') })
 
-const bodyParser = require('body-parser')
+var bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const express = require('express')
@@ -33,8 +33,11 @@ app.use(
   })
 )
 app.use(logger('dev'))
+
+app.use(bodyParser({ limit: '50mb' }))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use(cookieParser())
 
 // Set the public folder to "~/client/build/"
@@ -68,7 +71,11 @@ app.use('/api/*', (req, res, next) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
-
+app.use((req, res, next) => {
+  res.locals.theUser = req.session.currentuser
+  res.locals.errorMessage = req.flash('error')
+  next()
+})
 // Error handler
 app.use((err, req, res, next) => {
   console.error('----- An error happened -----')

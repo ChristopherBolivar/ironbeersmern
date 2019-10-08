@@ -14,11 +14,9 @@ export default class navbar extends Component {
         <NavLink to="/" exact>
           Home
         </NavLink>
-        <NavLink to="/countries">Countries</NavLink>
-        <NavLink to="/add-country">Add country</NavLink>
         {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
         {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-        {!api.isLoggedIn() && <NavLink to="/camera">Camera</NavLink>}
+        {api.isLoggedIn() && <NavLink to="/camera">Camera</NavLink>}
         {api.isLoggedIn() && (
           <Link to="/" onClick={e => this.handleLogoutClick(e)}>
             Logout
