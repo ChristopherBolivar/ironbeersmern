@@ -18,13 +18,16 @@ export default class Login extends Component {
     })
   }
 
-  handleClick(e) {
+  handleClick = e => {
     e.preventDefault()
     api
       .login(this.state.username, this.state.password)
       .then(result => {
-        console.log('SUCCESS!')
+        console.log('SUCCESS!', this.props)
         this.props.history.push('/') // Redirect to the home page
+
+        this.props.refresh()
+        //window.location.reload()
       })
       .catch(err => this.setState({ message: err.toString() }))
   }

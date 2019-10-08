@@ -4,7 +4,7 @@ const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? '/api'
-      : 'http://localhost:5000/api',
+      : 'http://192.168.125.40:5000/api',
   withCredentials: true,
 })
 
@@ -23,6 +23,7 @@ export default {
   // This method is synchronous and returns true or false
   // To know if the user is connected, we just check if we have a value for localStorage.getItem('user')
   isLoggedIn() {
+    console.log(localStorage.getItem('user') != null, 'this.isLoggedIn')
     return localStorage.getItem('user') != null
   },
 
@@ -51,6 +52,7 @@ export default {
         password,
       })
       .then(res => {
+        console.log(res)
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
         return res.data
@@ -60,7 +62,10 @@ export default {
 
   logout() {
     localStorage.removeItem('user')
-    return service.get('/logout')
+    return service
+      .get('/logout')
+      .then(res => res.data)
+      .catch(err => console.error(err))
   },
 
   // This is an example on how to use this method in a different file

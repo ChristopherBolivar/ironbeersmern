@@ -28,7 +28,12 @@ export default class App extends Component {
           <Route path="/countries" component={Countries} />
           <Route path="/add-country" component={AddCountry} />
           <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
+          <Route
+            path="/login"
+            component={props => (
+              <Login {...props} refresh={() => this.forceUpdate()} />
+            )}
+          />
           <Route path="/secret" component={Secret} />
           <Route path="/camera" component={Camera} />
           <Route render={() => <h2>404</h2>} />

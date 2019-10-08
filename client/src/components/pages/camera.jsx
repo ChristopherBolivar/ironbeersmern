@@ -9,15 +9,17 @@ export default class camera extends Component {
   capture = () => {
     const imageSrc = this.webcam.getScreenshot()
     console.log(imageSrc)
-
     axios
-      .post('http://localhost:5000/api/image-upload', { imageSrc })
-      .then(doc =>
-        console.log(
-          'works?',
-          doc.data.stuff.regions[0].lines.forEach(obj => obj)
-        )
-      )
+      .post('http://192.168.125.40:5000/api/image-upload', { imageSrc })
+      .then(doc => {
+        var stuff = doc.data.stuff.regions[0].lines.map(obj => {
+          return obj.words.map(word => {
+            return word.text
+          })
+        })
+        console.log('works?', stuff)
+        alert(stuff)
+      })
 
       .catch(err => console.error(err))
   }
@@ -26,7 +28,7 @@ export default class camera extends Component {
     const videoConstraints = {
       width: 1280,
       height: 720,
-      facingMode: 'user',
+      facingMode: { exact: 'environment' },
     }
 
     return (
