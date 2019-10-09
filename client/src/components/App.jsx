@@ -3,6 +3,7 @@ import { Route, Link, NavLink, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Countries from './pages/Countries'
 import AddCountry from './pages/AddCountry'
+import licDetails from './pages/licDetails'
 import Secret from './pages/Secret'
 import Login from './pages/Login'
 import Navbar from './pages/navbar'
@@ -36,6 +37,7 @@ export default class App extends Component {
           />
           <Route path="/secret" component={Secret} />
           <Route path="/camera" component={Camera} />
+          <Route path="/lic-details" component={licDetails} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

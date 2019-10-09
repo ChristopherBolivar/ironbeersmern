@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt')
 const bcryptSalt = 10
 
 router.post('/signup', (req, res, next) => {
-  console.log(req.body, 0909090909)
+  //console.log(req.body, 0909090909)
   const { username, password, name } = req.body
   if (!username || !password) {
     res.status(400).json({ message: 'Indicate username and password' })
@@ -39,7 +39,6 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-  console.log('-=-=-=-', req.body)
   const { username, password } = req.body
 
   // first check to see if there's a document with that username
