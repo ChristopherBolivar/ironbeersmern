@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Webcam from 'react-webcam'
-import { Redirect, BrowserRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-import { throws } from 'assert'
 export default class camera extends Component {
   state = {
     redirect: false,
@@ -11,23 +10,6 @@ export default class camera extends Component {
   setRef = webcam => {
     this.webcam = webcam
   }
-
-  // renderRedirect = () => {
-  //   console.log('button pressed')
-
-  //   console.log(this.state.redirect)
-
-  //   this.setState(
-  //     {
-  //       redirect: true,
-  //     },
-  //     () => {
-  //       console.log('got here')
-  //     }
-  //   )
-
-  //   console.log(this.state.redirect)
-  // }
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot()

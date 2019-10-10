@@ -59,51 +59,25 @@ router.post('/image-upload', isLoggedIn, (req, res, next) => {
           //data.regions[3].lines.forEach(obj => console.log(obj.words[0].text))
         })
         .catch(err => console.log(err))
-
-      // Perform the REST API call.
-      // $.ajax({
-      //   url: uriBase + '?' + 'langauge=en&detectOrientation=true', //$.param(params),
-      //   // Request headers.
-      //   beforeSend: function(jqXHR) {
-      //     jqXHR.setRequestHeader('Content-Type', 'application/json')
-      //     jqXHR.setRequestHeader('Ocp-Apim-Subscription-Key', subscriptionKey)
-      //   },
-      //   type: 'POST',
-      //   // Request body.
-      //   data: '{"url": ' + '"' + res.url + '"}',
-      // })
-      //   .done(function(data) {
-      //     // Show formatted JSON on webpage.
-      //     $('#responseTextArea').val(JSON.stringify(data, null, 2))
-
-      //     // data.regions[3].lines.forEach(obj => console.log(obj.words[0].text))
-      //     console.log(data)
-      //   })
-      //   .fail(function(jqXHR, textStatus, errorThrown) {
-      //     // Display error message.
-      //     var errorString =
-      //       errorThrown === ''
-      //         ? 'Error. '
-      //         : errorThrown + ' (' + jqXHR.status + '): '
-      //     errorString +=
-      //       jqXHR.responseText === ''
-      //         ? ''
-      //         : jQuery.parseJSON(jqXHR.responseText).message
-      //         ? jQuery.parseJSON(jqXHR.responseText).message
-      //         : jQuery.parseJSON(jqXHR.responseText).error.message
-      //     alert(errorString)
-      //   })
-      //   User.findByIdAndUpdate(req.user._id, {
-      //     doc_info: {
-      //       lic: res.url,
-      //     },
-      //   })
-      //     .then(result => {})
-      //     .catch(err => {
-      //       next(err)
-      //     })
     })
     .catch(err => console.log('ERR', err))
 })
 
+router.post('/add-lic-info', isLoggedIn, (req, res, next) => {
+  console.log(req.user._id, '=-=-=-=-=-=-=-=-=-=-DAUSER')
+
+  // console.log(req.body, '+_+_+_+_+_+_+_+_+_+_+_+ DABODY')
+
+  User.findByIdAndUpdate(req.user._id, {
+    doc_info: {
+      firstname: req.body.firstName,
+      lastname: req.body.lastName,
+      address: req.body.address,
+      city: req.body.city,
+      zip: req.body.zip,
+      dob: req.body.dob,
+      sex: req.body.sex,
+    },
+  }).catch(err => console.log(err))
+})
 module.exports = router

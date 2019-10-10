@@ -12,6 +12,7 @@
     "node": "8.9.4"
   },
   "dependencies": {
+    "concurrently": "^5.0.0",
     "react-webcam": "^3.1.1"
   }
 }

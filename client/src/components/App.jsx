@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, NavLink, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Countries from './pages/Countries'
 import AddCountry from './pages/AddCountry'
@@ -9,8 +9,7 @@ import Login from './pages/Login'
 import Navbar from './pages/navbar'
 import Signup from './pages/Signup'
 import Camera from './pages/camera'
-import api from '../api'
-import logo from '../logo.svg'
+import Admin from './pages/admin'
 
 export default class App extends Component {
   constructor(props) {
@@ -29,6 +28,7 @@ export default class App extends Component {
           <Route path="/countries" component={Countries} />
           <Route path="/add-country" component={AddCountry} />
           <Route path="/signup" component={Signup} />
+          <Route path="/admin" component={Admin} />
           <Route
             path="/login"
             component={props => (

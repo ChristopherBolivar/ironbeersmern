@@ -2,6 +2,18 @@ import React, { Component } from 'react'
 import api from '../../api'
 
 export default class licDetails extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      zip: '',
+      dob: '',
+      sex: '',
+    }
+  }
   componentDidMount() {
     var recievedMessage = this.props.location.state.licInfo
     alert(recievedMessage)
@@ -10,26 +22,30 @@ export default class licDetails extends Component {
   handleClick = e => {
     console.log(e)
     e.preventDefault()
-
-    let firstName = e.target.elements.firstName.value
-    let lastName = e.target.elements.lastName.value
-    let address = e.target.elements.address.value
-    let city = e.target.elements.city.value
-    let zip = e.target.elements.zip.value
-    let dob = e.target.elements.dob.value
-    let sex = e.target.elements.sex.value
-
+    this.setState({
+      firstName: document.getElementById('fname').value,
+      lastName: document.getElementById('lastName').value,
+      address: document.getElementById('address').value,
+      city: document.getElementById('city').value,
+      zip: document.getElementById('zip').value,
+      dob: document.getElementById('dob').value,
+      sex: document.getElementById('sex').value,
+    })
+    //setTimeout(function() {
+    console.log(this.state)
     api
-      .addLicenseInfo({ firstName, lastName, address, city, zip, dob, sex })
+      .addLicenseInfo(this.state)
       .then(result => {
         console.log('SUCCESS!', this.props)
       })
       .catch(err => this.setState({ message: err.toString() }))
+    //}, 1000)
   }
   render() {
     let licenseData = this.props.location.state.licInfo.map(data => {
       return data.join(' ')
     })
+    console.log(licenseData)
     let cityZip = licenseData[3]
     let dobAndGender = licenseData[4]
     let zip = cityZip.slice(-10, cityZip.length)
@@ -40,7 +56,7 @@ export default class licDetails extends Component {
 
     return (
       <div>
-        <form onSubmit={this.handleClick}>
+        <form>
           First Name &amp; Middle name:
           <input
             id="fname"
@@ -71,11 +87,10 @@ export default class licDetails extends Component {
           Sex:
           <input id="sex" name="sex" defaultValue={sex} />
           <br />
-          <input type="submit" value="click" />
         </form>
-        {/* <button onClick={this.handleClick} type="submit">
+        <button onClick={this.handleClick} type="submit">
           Confirm &amp; Submit
-        </button> */}
+        </button>
       </div>
     )
   }

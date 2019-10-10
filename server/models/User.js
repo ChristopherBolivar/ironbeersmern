@@ -6,6 +6,7 @@ const userSchema = new Schema(
     username: String,
     password: String,
     doc_info: Object,
+    isAdmin: Boolean,
   },
   {
     timestamps: {

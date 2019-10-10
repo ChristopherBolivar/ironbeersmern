@@ -90,7 +90,19 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  getAdmin() {
+    return service
+      .get('/admin')
+      .then(res => res.data)
 
+      .catch(errHandler)
+  },
+  addLicenseInfo(body) {
+    return service
+      .post('/add-lic-info', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   addPicture(file) {
     const formData = new FormData()
     formData.append('picture', file)
