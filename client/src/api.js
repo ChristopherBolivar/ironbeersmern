@@ -4,7 +4,7 @@ const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? '/api'
-      : `http://192.168.125.40:5000/api`,
+      : 'http://localhost:5000/api' || `http://192.168.125.40:5000/api`,
   withCredentials: true,
 })
 
@@ -80,6 +80,12 @@ export default {
   addCountry(body) {
     return service
       .post('/countries', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+  addEvent(body) {
+    return service
+      .post('/add-event', body)
       .then(res => res.data)
       .catch(errHandler)
   },

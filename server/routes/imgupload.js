@@ -1,13 +1,9 @@
 const express = require('express')
-const cloudinary = require('cloudinary')
 const router = express.Router()
 const cloudinaryConfig = require('../configs/cloudinary.js')
-const cors = require('cors')
 const User = require('../models/User')
 const { isLoggedIn } = require('../middlewares')
-var jsdom = require('jsdom').jsdom
 var axios = require('axios')
-var $ = require('jquery')
 
 const session = require('express-session')
 

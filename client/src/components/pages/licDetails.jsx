@@ -22,7 +22,7 @@ export default class licDetails extends Component {
     api
       .addLicenseInfo({ firstName, lastName, address, city, zip, dob, sex })
       .then(result => {
-        console.log('SUCCESS!', this.props)
+        console.log('SUCCESS!')
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
