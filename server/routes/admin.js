@@ -23,21 +23,25 @@ router.post('/add-event', isLoggedIn, (req, res, next) => {
   // console.log('+_+_+_+_', req.user)
   axios
     .get(
-      `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius?zipcode=${req.body.zipcode}&minimumradius=0&maximumradius=50&key=32YBND6G78FH2U4WG1ZF`
+      ` https://www.zipcodeapi.com/rest/SmrKePZleLeCMUT7NjUAgC849XnC9wI0dQJ37zrlafv7MfqhVRYehFWfC6coBroa/radius.json/${req.body.zipcode}/${req.body.miles}/mile `
     )
     .then(data => {
-      console.log('=-=-=-=-==-', data.data)
-      console.log('++_+_+_+_+__+_+', req.body.eventName)
+      console.log(
+        '++_+_+_+_+__+_+',
+        req.body.eventName,
+        req.body.zipcode,
+        req.body.miles
+      )
+      console.log(data.data)
+
       Event.create({
         eventname: req.body.eventName,
-        affectedArea: data.data,
+        affectedArea: data.data.zip_codes,
       })
         .then(element => {
           console.log('success')
         })
         .catch(err => next(err))
-
-      // res.json({ stuff: data.data })
     })
     .catch(err => console.log(err))
 })

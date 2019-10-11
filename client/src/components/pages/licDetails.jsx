@@ -30,8 +30,8 @@ export default class licDetails extends Component {
     let licenseData = this.props.location.state.licInfo.map(data => {
       return data.join(' ')
     })
-    let cityZip = licenseData[3]
-    let dobAndGender = licenseData[4]
+    let cityZip = licenseData[5]
+    let dobAndGender = licenseData[6]
     let zip = cityZip.slice(-10, cityZip.length)
     let city = cityZip.slice(0, cityZip.length - 10)
     let dob = dobAndGender.slice(4, dobAndGender.length)
@@ -45,21 +45,21 @@ export default class licDetails extends Component {
           <input
             id="fname"
             name="firstName"
-            defaultValue={licenseData[0]}
+            defaultValue={licenseData[2]}
           />{' '}
           <br />
           Last Name:
           <input
             id="lastName"
             name="lastName"
-            defaultValue={licenseData[1]}
+            defaultValue={licenseData[3]}
           />{' '}
           <br />
           Address:
           <input
             id="address"
             name="address"
-            defaultValue={licenseData[2]}
+            defaultValue={licenseData[4]}
           />{' '}
           <br />
           City:

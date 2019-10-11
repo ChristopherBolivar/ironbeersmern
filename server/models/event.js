@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const eventSchema = new Schema(
   {
     eventname: String,
-    affectedArea: Object,
+    affectedArea: Array,
   },
   {
     timestamps: {

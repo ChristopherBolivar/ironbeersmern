@@ -16,7 +16,8 @@ export default class camera extends Component {
     console.log(imageSrc)
     axios
       .post(
-        'http://192.168.125.40:5000/api/image-upload' ||
+        'http://10.0.0.3:5000/api/image-upload' ||
+          'http://192.168.125.40:5000/api/image-upload' ||
           'http://localhost:5000/api/image-upload',
         { imageSrc }
       )
@@ -62,7 +63,7 @@ export default class camera extends Component {
       <>
         <Webcam
           audio={false}
-          height={window.innerHeight}
+          height={window.innerHeight / 1.5}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
           width={window.innerWidth}
