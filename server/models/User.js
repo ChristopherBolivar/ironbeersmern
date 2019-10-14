@@ -5,7 +5,7 @@ const userSchema = new Schema(
   {
     username: String,
     password: String,
-    doc_info: Object,
+    cart: Object,
     isAdmin: Boolean,
   },
   {

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Home from './pages/Home'
-import Countries from './pages/Countries'
-import AddCountry from './pages/AddCountry'
 import licDetails from './pages/licDetails'
 import Secret from './pages/Secret'
 import Login from './pages/Login'
@@ -10,29 +8,82 @@ import Navbar from './pages/navbar'
 import Signup from './pages/Signup'
 import Camera from './pages/camera'
 import Admin from './pages/admin'
+import Cart from './pages/cart'
+import ShowBeers from './pages/allbeers'
+import api from '../api'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       countries: [],
+      beers: [],
+      cart: [],
+      theCart: {},
     }
   }
 
+  componentDidMount() {
+    api
+      .getBeers()
+      .then(beers => {
+        this.setState({
+          beers: beers,
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  addToTheCart = (beer, amount) => {
+    let theCart = { ...this.state.theCart }
+    theCart[beer] = amount
+    this.setState({ theCart })
+
+    api
+      .addCart(theCart)
+      .then(result => {
+        console.log('SUCCESS!')
+        //this.setState({ theCart })
+      })
+      .catch(err => this.setState({ message: err.toString() }))
+    console.log(this.state.cart)
+  }
+
   render() {
+    console.log(this.state.cart, 'this state cart')
     return (
       <div className="App">
-        <Navbar />
+        <Navbar theCart={this.state.theCart} />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/countries" component={Countries} />
-          <Route path="/add-country" component={AddCountry} />
           <Route path="/signup" component={Signup} />
           <Route path="/admin" component={Admin} />
+          <Route
+            path="/beers"
+            component={props => (
+              <ShowBeers
+                {...props}
+                beers={this.state.beers}
+                addToCart={this.addToTheCart}
+                theCart={this.state.theCart}
+              />
+            )}
+          />
+          />
           <Route
             path="/login"
             component={props => (
               <Login {...props} refresh={() => this.forceUpdate()} />
+            )}
+          />
+          <Route
+            path="/shopping-cart"
+            component={props => (
+              <Cart
+                {...props}
+                theCart={this.state.theCart}
+                // state={this.state}
+              />
             )}
           />
           <Route path="/secret" component={Secret} />

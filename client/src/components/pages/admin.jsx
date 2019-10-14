@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import api from '../../api'
 
 export default class admin extends Component {
   state = {
     admin: false,
   }
-  componentDidMount() {
-    var recievedMessage = this.props
-    console.log(this.props)
-  }
+
   handleForm = e => {
     e.preventDefault()
     let eventName = e.target[0].value

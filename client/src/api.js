@@ -4,9 +4,9 @@ const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? '/api'
-      : 'http://10.0.0.3:5000/api' ||
-        'http://localhost:5000/api' ||
-        `http://192.168.125.40:5000/api`,
+      : `http://192.168.125.40:5000/api` ||
+        'http://10.0.0.3:5000/api' ||
+        'http://localhost:5000/api',
   withCredentials: true,
 })
 
@@ -25,7 +25,7 @@ export default {
   // This method is synchronous and returns true or false
   // To know if the user is connected, we just check if we have a value for localStorage.getItem('user')
   isLoggedIn() {
-    console.log(localStorage.getItem('user') != null, 'this.isLoggedIn')
+    //console.log(localStorage.getItem('user') != null, 'this.isLoggedIn')
     return localStorage.getItem('user') != null
   },
 
@@ -78,6 +78,18 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  getUser() {
+    return service
+      .get('/user-info')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+  getBeers() {
+    return service
+      .get('/')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
   addCountry(body) {
     return service
@@ -108,6 +120,12 @@ export default {
   addLicenseInfo(body) {
     return service
       .post('/add-lic-info', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+  addCart(body) {
+    return service
+      .post('/add-cart', body)
       .then(res => res.data)
       .catch(errHandler)
   },

@@ -56,6 +56,8 @@ app.use(
 require('./passport')(app)
 
 app.use('/api', require('./routes/index'))
+app.use('/api', require('./routes/dashboard'))
+app.use('/api', require('./routes/addcart'))
 app.use('/api', require('./routes/imgupload'))
 app.use('/api', require('./routes/auth'))
 app.use('/api', require('./routes/admin'))

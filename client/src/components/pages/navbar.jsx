@@ -13,21 +13,49 @@ export default class navbar extends Component {
   }
 
   render() {
+    console.log(this)
     return (
-      <header className="App-header">
-        <h1 className="App-title">MERN Boilerplate</h1>
-        <NavLink to="/" exact>
-          Home
-        </NavLink>
-        {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
-        {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-        {api.isLoggedIn() && <NavLink to="/camera">Camera</NavLink>}
-        {api.isLoggedIn() && (
-          <Link to="/" onClick={e => this.handleLogoutClick(e)}>
-            Logout
-          </Link>
-        )}
-        <NavLink to="/secret">Secret</NavLink>
+      <header className="container-fluid">
+        <div className="row">
+          <div className="col-3">
+            <h1 className="App-title">Iron Beers</h1>
+          </div>
+          <div className="col-6 menu-links">
+            <NavLink className="pl-1 pr-1" to="/" exact>
+              Home
+            </NavLink>
+            <NavLink className="pl-1 pr-1" to="/beers">
+              Beer Inventory
+            </NavLink>
+            {!api.isLoggedIn() && (
+              <NavLink className="pl-1 pr-1" to="/signup">
+                Signup
+              </NavLink>
+            )}
+            {!api.isLoggedIn() && (
+              <NavLink className="pl-1 pr-1" to="/login">
+                Login
+              </NavLink>
+            )}
+            {api.isLoggedIn() && (
+              <Link
+                className="pl-1 pr-1"
+                to="/"
+                onClick={e => this.handleLogoutClick(e)}
+              >
+                Logout
+              </Link>
+            )}
+            <NavLink className="pl-1 pr-1" to="/secret">
+              Secret
+            </NavLink>
+          </div>
+          <div className="col-2">
+            <NavLink className="pl-1 pr-1" to="/shopping-cart">
+              Cart
+            </NavLink>
+          </div>
+        </div>
       </header>
     )
   }

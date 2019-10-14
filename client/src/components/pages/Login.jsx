@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../api'
+import LoginForm from './loginForm'
 
 export default class Login extends Component {
   constructor(props) {

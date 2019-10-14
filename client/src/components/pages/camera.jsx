@@ -16,8 +16,8 @@ export default class camera extends Component {
     console.log(imageSrc)
     axios
       .post(
-        'http://10.0.0.3:5000/api/image-upload' ||
-          'http://192.168.125.40:5000/api/image-upload' ||
+        'http://192.168.125.40:5000/api/image-upload' ||
+          'http://10.0.0.3:5000/api/image-upload' ||
           'http://localhost:5000/api/image-upload',
         { imageSrc }
       )

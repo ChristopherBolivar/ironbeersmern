@@ -34,7 +34,7 @@ export default class licDetails extends Component {
     let dobAndGender = licenseData[6]
     let zip = cityZip.slice(-10, cityZip.length)
     let city = cityZip.slice(0, cityZip.length - 10)
-    let dob = dobAndGender.slice(4, dobAndGender.length)
+    let dob = dobAndGender.slice(3, dobAndGender.length)
     dob = dobAndGender.slice(5, dob.length - 2)
     let sex = dobAndGender.slice(-2, dobAndGender.length)
 
@@ -73,9 +73,9 @@ export default class licDetails extends Component {
           <br />
           <input type="submit" value="click" />
         </form>
-        {/* <button onClick={this.handleClick} type="submit">
+        <button onClick={this.handleClick} type="submit">
           Confirm &amp; Submit
-        </button> */}
+        </button>
       </div>
     )
   }
