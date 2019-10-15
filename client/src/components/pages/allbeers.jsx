@@ -14,7 +14,6 @@ export default class allbeers extends Component {
     let amount
     this.state.quantity.forEach(e => {
       if (e[1] === beer.name) {
-        //console.log('true')
         amount = e[0]
       }
     })
@@ -81,7 +80,7 @@ export default class allbeers extends Component {
                     onClick={e => this.checkLog(beer, this.props.quantity)}
                     className="btn btn-primary"
                   >
-                    Add to cart?
+                    Add to cart
                   </div>
                 </div>
               </div>

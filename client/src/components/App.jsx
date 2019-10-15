@@ -36,6 +36,7 @@ export default class App extends Component {
 
   addToTheCart = (beer, amount) => {
     let theCart = { ...this.state.theCart }
+    // let theCart = { ...this.state.theCart }
     theCart[beer] = amount
     this.setState({ theCart })
 
@@ -50,7 +51,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.cart, 'this state cart')
     return (
       <div className="App">
         <Navbar theCart={this.state.theCart} />

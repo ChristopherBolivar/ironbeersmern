@@ -13,7 +13,6 @@ export default class navbar extends Component {
   }
 
   render() {
-    console.log(this)
     return (
       <header className="container-fluid">
         <div className="row">
