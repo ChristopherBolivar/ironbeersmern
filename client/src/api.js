@@ -4,7 +4,7 @@ const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? '/api'
-      : 'http://localhost:5000/api',
+      : 'http://192.168.125.40:5000/api',
   withCredentials: true,
 })
 
@@ -82,6 +82,12 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  getUserState() {
+    return service
+      .get('/user-state')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   getBeers() {
     return service
       .get('/')
@@ -101,7 +107,12 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
-
+  validateUser(body) {
+    return service
+      .post('/validate-user', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   getSecret() {
     return service
       .get('/secret')

@@ -19,5 +19,13 @@ router.get('/user-info', (req, res, next) => {
     })
     .catch(err => console.log(err))
 })
+router.get('/user-state', (req, res, next) => {
+  User.findById(req.user._id)
+    .then(info => {
+      console.log(info.verified)
+      res.json(info.verified)
+    })
+    .catch(err => console.log(err))
+})
 
 module.exports = router

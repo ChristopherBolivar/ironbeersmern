@@ -3,15 +3,15 @@ import api from '../../api'
 
 export default class licDetails extends Component {
   componentDidMount() {
-    var recievedMessage = this.props.location.state.licInfo
-    //document.write(typeof recievedMessage, recievedMessage)
-    alert(recievedMessage)
-    for (let i = 0; i < recievedMessage.length; i++) {
-      if (recievedMessage[i].includes('DOB')) {
-        let dob = recievedMessage[i][1]
-        alert(dob)
-      }
-    }
+    // var recievedMessage = this.props.location.state.licInfo
+    // //document.write(typeof recievedMessage, recievedMessage)
+    // alert(recievedMessage)
+    // for (let i = 0; i < recievedMessage.length; i++) {
+    //   if (recievedMessage[i].includes('DOB')) {
+    //     let dob = recievedMessage[i][1]
+    //     alert(dob)
+    //   }
+    // }
   }
 
   handleClick = e => {
@@ -34,13 +34,13 @@ export default class licDetails extends Component {
       .catch(err => this.setState({ message: err.toString() }))
   }
   render() {
-    let arr = []
-    let licenseData = this.props.location.state.licInfo.map(data => {
-      let dataDiv = data.filter(a => {
-        return a.includes('DOB')
-      })
-      return <div>{dataDiv}</div>
-    })
+    // let arr = []
+    // let licenseData = this.props.location.state.licInfo.map(data => {
+    //   let dataDiv = data.filter(a => {
+    //     return a.includes('DOB')
+    //   })
+    //   return <div>{dataDiv}</div>
+    // })
     // let cityZip = licenseData[5]
     // let dobAndGender = licenseData[6]
     // let zip = cityZip.slice(-10, cityZip.length)
@@ -49,6 +49,6 @@ export default class licDetails extends Component {
     // dob = dobAndGender.slice(5, dob.length - 2)
     // let sex = dobAndGender.slice(-2, dobAndGender.length)
 
-    return <div id="data">{licenseData}</div>
+    return <div id="data">halo</div>
   }
 }

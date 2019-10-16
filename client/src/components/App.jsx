@@ -19,6 +19,7 @@ export default class App extends Component {
       countries: [],
       beers: [],
       cart: [],
+      user: false,
       theCart: {},
     }
   }
@@ -49,7 +50,16 @@ export default class App extends Component {
       .catch(err => this.setState({ message: err.toString() }))
     console.log(this.state.cart)
   }
-
+  getUserStatus = () => {
+    api
+      .getUserState()
+      .then(user => {
+        this.setState({
+          user: user,
+        })
+      })
+      .catch(err => console.log(err))
+  }
   render() {
     return (
       <div className="App">
@@ -82,6 +92,8 @@ export default class App extends Component {
               <Cart
                 {...props}
                 theCart={this.state.theCart}
+                userStatus={this.state.user}
+                // state={this.state}
                 // state={this.state}
               />
             )}
