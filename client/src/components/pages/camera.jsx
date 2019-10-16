@@ -31,7 +31,6 @@ export default class camera extends Component {
       .catch(err => console.log(err))
   }
   capture = () => {
-    alert('hello')
     const imageSrc = this.webcam.getScreenshot()
     console.log(imageSrc)
     axios
