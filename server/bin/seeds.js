@@ -7,10 +7,7 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') })
 // $ node bin/seeds.js
 
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const Beer = require('../models/beer')
 
-const bcryptSalt = 10
 
 require('../configs/database')
 
