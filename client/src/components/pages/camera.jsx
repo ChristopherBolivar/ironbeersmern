@@ -27,15 +27,19 @@ export default class camera extends Component {
             return word.text
           })
         })
-        this.setState(
-          {
-            redirect: true,
-            licInfo: licInfo,
-          },
-          () => {
-            console.log('redirecting')
-          }
-        )
+        this.setState({
+          licInfo: licInfo,
+        })
+
+        let dobAndGender = licInfo[4]
+        let dob = dobAndGender[1]
+        alert(dob)
+        // for (let i = 0; i < licInfo.length; i++) {
+        //   if (licInfo[i].includes('DOB')) {
+        //     let dob = licInfo[i][1]
+        //     alert(dob)
+        //   }
+        // }
       })
 
       .catch(err => console.error(err))
@@ -63,11 +67,12 @@ export default class camera extends Component {
       <>
         <Webcam
           audio={false}
-          height={window.innerHeight / 1.5}
+          height={200}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={window.innerWidth}
+          width={200}
           videoConstraints={videoConstraints}
+          className="mx-auto text-center"
         />
         <button onClick={this.capture}>Capture photo</button>
       </>

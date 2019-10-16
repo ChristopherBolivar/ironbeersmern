@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Camera from './camera'
+import Webcam from 'react-webcam'
 import 'bulma/css/bulma.css'
 import api from '../../api'
 export default class cart extends Component {
@@ -73,7 +75,9 @@ export default class cart extends Component {
           <p>Amount: {total}</p>
           <p>Tax: 7%</p>
           <p>Total: {total * 0.07 + total}</p>
-          <button className="btn btn-success">Proceed to checkout</button>
+          <button onClick={this.modalShow} className="btn btn-success">
+            Proceed to checkout
+          </button>
         </div>
       )
     }
@@ -122,6 +126,12 @@ export default class cart extends Component {
       return <p className="text-center">no item in cart</p>
     }
   }
+  modalShow = () => {
+    document.querySelector('#modal').setAttribute('class', 'modal is-active')
+  }
+  modalHide = () => {
+    document.querySelector('#modal').setAttribute('class', 'modal')
+  }
   render() {
     return (
       <div>
@@ -129,6 +139,18 @@ export default class cart extends Component {
         <div className="row">
           <div className="col-6">&nbsp;</div>
           <div className="col-6">{this.showTotal()}</div>
+        </div>
+
+        <div id="modal" className="modal">
+          <div className="modal-background"></div>
+          <div id="modal-content" className="modal-content">
+            <Camera />
+          </div>
+          <button
+            onClick={this.modalHide}
+            class="modal-close is-large"
+            aria-label="close"
+          ></button>
         </div>
       </div>
     )
