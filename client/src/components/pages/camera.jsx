@@ -31,10 +31,11 @@ export default class camera extends Component {
       .catch(err => console.log(err))
   }
   capture = () => {
+    alert(hello)
     const imageSrc = this.webcam.getScreenshot()
     console.log(imageSrc)
     axios
-      .post('api/image-upload', { imageSrc })
+      .post('/api/image-upload', { imageSrc })
       .then(doc => {
         var licInfo = doc.data.stuff.regions[0].lines.map(obj => {
           return obj.words.map(word => {
