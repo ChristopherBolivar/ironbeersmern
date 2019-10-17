@@ -8,9 +8,31 @@ export default class licDetails extends Component {
       licInfo: {},
     }
   }
+  componentDidMount() {
+    console.log(this.props.location.state, '+_+_+_+__=-=-=-=-=--=')
+    this.setState({
+      licInfo: {
+        firstname: this.props.location.state.licInfo.firstname,
+        lastname: this.props.location.state.licInfo.lastname,
+        address: this.props.location.state.licInfo.address,
+        fullname:
+          this.props.location.state.licInfo.firstname +
+          ' ' +
+          this.props.location.state.licInfo.lastname,
+      },
+    })
+    console.log(this.state.licInfo, 'this is the state')
+  }
+  populateName = () => {
+    document
+      .getElementById('fname')
+      .setAttribute('defaultValue', `${this.state.licInfo.firstname}`)
+  }
 
   render() {
     console.log(this.props)
+    console.log(this.state.licInfo)
+
     return (
       <div className="data container ">
         <div className="row px-3">
@@ -26,6 +48,7 @@ export default class licDetails extends Component {
                   type="text"
                   id="fname"
                   name="firstname"
+                  defaultValue={this.state.licInfo.fullname}
                   placeholder="John M. Doe"
                 />
                 <label for="email">
@@ -44,6 +67,7 @@ export default class licDetails extends Component {
                   type="text"
                   id="adr"
                   name="address"
+                  defaultValue={this.state.licInfo.address}
                   placeholder="542 W. 15th Street"
                 />
                 <label for="city">
@@ -92,6 +116,7 @@ export default class licDetails extends Component {
                   type="text"
                   id="cname"
                   name="cardname"
+                  defaultValue={this.state.licInfo.fullname}
                   placeholder="John More Doe"
                 />
                 <br />

@@ -59,7 +59,7 @@ export default class camera extends Component {
     const imageSrc = this.webcam.getScreenshot()
     console.log(imageSrc)
     axios
-      .post('/api/image-upload', { imageSrc })
+      .post('http://192.168.125.40:5000/api/image-upload', { imageSrc })
       .then(doc => {
         var licInfo = doc.data.stuff.regions[0].lines.map(obj => {
           return obj.words.map(word => {
@@ -131,7 +131,6 @@ export default class camera extends Component {
       height: 720,
       facingMode: { exact: 'environment' },
     }
-    console.log(this)
     if (this.state.redirect) {
       console.log(this.state)
       return (
