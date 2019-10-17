@@ -13,7 +13,7 @@ export default class camera extends Component {
   setRef = webcam => {
     this.webcam = webcam
   }
-  componentDidMount() {
+  getUserState = () => {
     api
       .getUserState()
       .then(user => {
@@ -26,7 +26,7 @@ export default class camera extends Component {
               redirect: true,
             })
           }
-        }, 3000)
+        }, 2000)
       })
       .catch(err => console.log(err))
   }
@@ -99,6 +99,7 @@ export default class camera extends Component {
   }
 
   render() {
+    this.getUserState()
     console.log(this.state.user, 'here as')
     const videoConstraints = {
       width: 1280,
