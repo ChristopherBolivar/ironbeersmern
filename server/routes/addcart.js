@@ -23,7 +23,10 @@ router.get('/user-state', (req, res, next) => {
   User.findById(req.user._id)
     .then(info => {
       console.log(info.verified)
-      res.json(info.verified)
+      res.json({
+        verified: info.verified,
+        userInfo: info.doc_info,
+      })
     })
     .catch(err => console.log(err))
 })

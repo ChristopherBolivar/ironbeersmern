@@ -60,19 +60,13 @@ router.post('/image-upload', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/add-lic-info', isLoggedIn, (req, res, next) => {
-  console.log(req.user._id, '=-=-=-=-=-=-=-=-=-=-DAUSER')
-
-  // console.log(req.body, '+_+_+_+_+_+_+_+_+_+_+_+ DABODY')
+  console.log(req.body, '+_+_+_+_+_+_+_+_+_+_+_+ DABODY')
 
   User.findByIdAndUpdate(req.user._id, {
     doc_info: {
-      firstname: req.body.firstName,
-      lastname: req.body.lastName,
-      address: req.body.address,
-      city: req.body.city,
-      zip: req.body.zip,
-      dob: req.body.dob,
-      sex: req.body.sex,
+      firstname: req.body.fName,
+      lastname: req.body.lName,
+      address: req.body.addy,
     },
   }).catch(err => console.log(err))
 })

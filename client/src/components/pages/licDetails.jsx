@@ -2,9 +2,15 @@ import React, { Component } from 'react'
 import api from '../../api'
 
 export default class licDetails extends Component {
-  componentDidMount() {}
+  constructor(props) {
+    super(props)
+    this.state = {
+      licInfo: {},
+    }
+  }
 
   render() {
+    console.log(this.props)
     return (
       <div className="data container ">
         <div className="row px-3">

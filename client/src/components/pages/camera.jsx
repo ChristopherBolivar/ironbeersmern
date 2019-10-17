@@ -8,28 +8,53 @@ export default class camera extends Component {
     redirect: false,
     verified: false,
     user: false,
-    licinfo: '',
+    userInfo: {},
+    int: null,
   }
   setRef = webcam => {
     this.webcam = webcam
   }
+
+  componentDidMount() {
+    let int = setInterval(() => this.getUserState(), 3000)
+    this.setState({ int })
+  }
+
   getUserState = () => {
+    console.log('in here', this.state)
     api
       .getUserState()
       .then(user => {
-        this.setState({
-          user: user,
-        })
-        setTimeout(() => {
-          if (this.state.user) {
-            this.setState({
-              redirect: true,
-            })
-          }
-        }, 2000)
+        console.log(user)
+        if (user.verified) {
+          this.setState({
+            userInfo: user.userInfo,
+            redirect: true,
+          })
+          clearInterval(this.state.int)
+        }
       })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
   }
+  // api
+  //   .getUserState()
+  //   .then(user => {
+  //     this.setState({
+  //       verified: user.verified,
+  //     })
+  //     setTimeout(() => {
+  //       if (this.state.verified) {
+  //         this.setState({
+  //           userInfo: user.userInfo,
+  //           redirect: true,
+  //           verified: true,
+  //         })
+  //       }
+  //     }, 2000)
+  //   })
+  //   .catch(err => console.log(err))
+  //}
+
   capture = () => {
     const imageSrc = this.webcam.getScreenshot()
     console.log(imageSrc)
@@ -41,9 +66,11 @@ export default class camera extends Component {
             return word.text
           })
         })
-        this.setState({
-          licInfo: licInfo,
-        })
+
+        let fName = licInfo[0].join(' ')
+        let lName = licInfo[1].join(' ')
+        let addy = licInfo[2].join(' ')
+        alert(fName + ' ' + lName + ' ' + addy)
 
         let dobAndGender = licInfo[4]
         let dob = dobAndGender[1].slice(6)
@@ -59,7 +86,14 @@ export default class camera extends Component {
         }
 
         if (this.state.verified) {
-          alert('user is validated')
+          api
+            .addLicenseInfo({ fName, lName, addy })
+            .then(doc => {
+              console.log(doc)
+            })
+
+            .catch(err => console.error(err))
+
           api
             .validateUser()
             .then(doc => {
@@ -71,7 +105,7 @@ export default class camera extends Component {
             .getUserState()
             .then(user => {
               this.setState({
-                user: user,
+                user: user.verified,
               })
               alert(user + '  user from ap')
             })
@@ -83,36 +117,28 @@ export default class camera extends Component {
                 redirect: true,
               })
             }
-          }, 3000)
+          }, 2000)
         }
-
-        //alert(dob)
-        // for (let i = 0; i < licInfo.length; i++) {
-        //   if (licInfo[i].includes('DOB')) {
-        //     let dob = licInfo[i][1]
-        //     alert(dob)
-        //   }
-        // }
       })
 
       .catch(err => console.error(err))
   }
 
   render() {
-    this.getUserState()
-    console.log(this.state.user, 'here as')
+    // this.getUserState()
     const videoConstraints = {
       width: 1280,
       height: 720,
       facingMode: { exact: 'environment' },
     }
+    console.log(this)
     if (this.state.redirect) {
-      console.log('this is the updated state', this.state.licinfo)
+      console.log(this.state)
       return (
         <Redirect
           to={{
             pathname: '/lic-details',
-            state: { licInfo: this.state.licInfo },
+            state: { licInfo: this.state.userInfo },
           }}
         />
       )
