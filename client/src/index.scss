@@ -4,15 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-.info {
-  margin: 20px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  display: inline-block;
-  background-color: #5776e9;
-  color: white;
-}
-
 .info.info-danger {
   background-color: #e73f3f;
 }
@@ -20,7 +11,7 @@ body {
   width: 80px;
 }
 a {
-  color: white;
+  color: blue;
   padding: 0 5px;
   text-decoration: unset;
 }
@@ -44,4 +35,10 @@ a.active {
   width: 500px;
   height: 800px;
   padding: 2rem;
+}
+.data label {
+  display: block;
+}
+link {
+  color: #000 !important;
 }

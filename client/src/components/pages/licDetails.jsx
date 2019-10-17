@@ -2,53 +2,166 @@ import React, { Component } from 'react'
 import api from '../../api'
 
 export default class licDetails extends Component {
-  componentDidMount() {
-    // var recievedMessage = this.props.location.state.licInfo
-    // //document.write(typeof recievedMessage, recievedMessage)
-    // alert(recievedMessage)
-    // for (let i = 0; i < recievedMessage.length; i++) {
-    //   if (recievedMessage[i].includes('DOB')) {
-    //     let dob = recievedMessage[i][1]
-    //     alert(dob)
-    //   }
-    // }
-  }
+  componentDidMount() {}
 
-  handleClick = e => {
-    console.log(e)
-    e.preventDefault()
-
-    let firstName = e.target.elements.firstName.value
-    let lastName = e.target.elements.lastName.value
-    let address = e.target.elements.address.value
-    let city = e.target.elements.city.value
-    let zip = e.target.elements.zip.value
-    let dob = e.target.elements.dob.value
-    let sex = e.target.elements.sex.value
-
-    api
-      .addLicenseInfo({ firstName, lastName, address, city, zip, dob, sex })
-      .then(result => {
-        console.log('SUCCESS!')
-      })
-      .catch(err => this.setState({ message: err.toString() }))
-  }
   render() {
-    // let arr = []
-    // let licenseData = this.props.location.state.licInfo.map(data => {
-    //   let dataDiv = data.filter(a => {
-    //     return a.includes('DOB')
-    //   })
-    //   return <div>{dataDiv}</div>
-    // })
-    // let cityZip = licenseData[5]
-    // let dobAndGender = licenseData[6]
-    // let zip = cityZip.slice(-10, cityZip.length)
-    // let city = cityZip.slice(0, cityZip.length - 10)
-    // let dob = dobAndGender.slice(3, dobAndGender.length)
-    // dob = dobAndGender.slice(5, dob.length - 2)
-    // let sex = dobAndGender.slice(-2, dobAndGender.length)
+    return (
+      <div className="data container ">
+        <div className="row px-3">
+          <form action="/action_page.php">
+            <div className="row">
+              <div className="col-6">
+                <h3>Billing Address</h3>
+                <label for="fname">
+                  <i className="fa fa-user"></i> Full Name
+                </label>
+                <br />
+                <input
+                  type="text"
+                  id="fname"
+                  name="firstname"
+                  placeholder="John M. Doe"
+                />
+                <label for="email">
+                  <i className="fa fa-envelope"></i> Email
+                </label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="john@example.com"
+                />
+                <label for="adr">
+                  <i className="fa fa-address-card-o"></i> Address
+                </label>
+                <input
+                  type="text"
+                  id="adr"
+                  name="address"
+                  placeholder="542 W. 15th Street"
+                />
+                <label for="city">
+                  <i className="fa fa-institution"></i> City
+                </label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="New York"
+                />
 
-    return <div id="data">halo</div>
+                <div className="row">
+                  <div className="col-6">
+                    <label for="state">State</label>
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      placeholder="NY"
+                    />
+                  </div>
+                  <div className="col-6">
+                    <label for="zip">Zip</label>
+                    <input
+                      type="text"
+                      id="zip"
+                      name="zip"
+                      placeholder="10001"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-6">
+                <h3>Payment</h3>
+                <label for="fname">Accepted Cards</label>
+                <div className="icon-container">
+                  <i className="fa fa-cc-visa"></i>
+                  <i className="fa fa-cc-amex"></i>
+                  <i className="fa fa-cc-mastercard"></i>
+                  <i className="fa fa-cc-discover"></i>
+                </div>
+                <label for="cname">Name on Card</label>
+                <input
+                  type="text"
+                  id="cname"
+                  name="cardname"
+                  placeholder="John More Doe"
+                />
+                <br />
+                <label for="ccnum">Credit card number</label>
+                <input
+                  type="text"
+                  id="ccnum"
+                  name="cardnumber"
+                  placeholder="1111-2222-3333-4444"
+                />
+
+                <div className="row">
+                  <div className="col-4">
+                    <label for="expmonth">Exp Month</label>
+                    <input
+                      type="text"
+                      id="expmonth"
+                      name="expmonth"
+                      placeholder="September"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label for="expyear">Exp Year</label>
+                    <input
+                      type="text"
+                      id="expyear"
+                      name="expyear"
+                      placeholder="2018"
+                    />
+                  </div>
+                  <div className="col-4">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="352" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <label>
+              <input type="checkbox" checked="checked" name="sameadr" />
+              Shipping address same as billing
+            </label>
+            <input type="submit" value="Continue to checkout" className="btn" />
+          </form>
+        </div>
+
+        {/* <div className="col-4">
+            <div>
+              <h4>
+                Cart
+                <span className="price">
+                  <i className="fa fa-shopping-cart"></i>
+                  <b>4</b>
+                </span>
+              </h4>
+              <p>
+                <a href="#">Product 1</a> <span className="price">$15</span>
+              </p>
+              <p>
+                <a href="#">Product 2</a> <span className="price">$5</span>
+              </p>
+              <p>
+                <a href="#">Product 3</a> <span className="price">$8</span>
+              </p>
+              <p>
+                <a href="#">Product 4</a> <span className="price">$2</span>
+              </p>
+              <hr />
+              <p>
+                Total{' '}
+                <span className="price">
+                  <b>$30</b>
+                </span>
+              </p>
+            </div>
+          </div> */}
+      </div>
+    )
   }
 }
