@@ -34,7 +34,7 @@ export default class licDetails extends Component {
     console.log(this.state.licInfo)
 
     return (
-      <div className="data container ">
+      <div className="data container padding-top">
         <div className="row px-3">
           <form action="/action_page.php">
             <div className="row">
