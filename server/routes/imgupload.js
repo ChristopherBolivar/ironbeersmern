@@ -20,7 +20,7 @@ router.post('/image-upload', isLoggedIn, (req, res, next) => {
       // **********************************************
       // *** Update or verify the following values. ***
       // **********************************************
-      let subscriptionKey = '7cae632473db490b894842e6a60f210a'
+      let subscriptionKey = process.env.AZURE_KEY
       let endpoint = 'https://sosvisa.cognitiveservices.azure.com/'
       if (!subscriptionKey) {
         throw new Error(
