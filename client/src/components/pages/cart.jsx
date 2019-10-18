@@ -41,6 +41,7 @@ export default class cart extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
+
   updateQuantity = e => {
     let cartCopy = { ...this.state.cart }
     console.log(e.target.name, cartCopy)
@@ -60,6 +61,7 @@ export default class cart extends Component {
     }
     console.log(cartCopy)
   }
+
   showTotal = () => {
     let quantity = []
     for (var key in this.state.cart) {
@@ -72,9 +74,9 @@ export default class cart extends Component {
 
       return (
         <div>
-          <p>Amount: {total}</p>
+          <p>Amount: $ {total}</p>
           <p>Tax: 7%</p>
-          <p>Total: {total * 0.07 + total}</p>
+          <p>Total: $ {total * 0.07 + total}</p>
           <button onClick={this.modalShow} className="btn btn-success">
             Proceed to checkout
           </button>
@@ -82,6 +84,7 @@ export default class cart extends Component {
       )
     }
   }
+
   showCart = () => {
     let cart = []
     for (var key in this.state.cart) {
@@ -92,7 +95,7 @@ export default class cart extends Component {
       return cart.map(item => {
         return (
           <div key={item[0]} className="container">
-            <div className="row">
+            <div className="row ">
               <div className="col-6">
                 <p>{item[0]}</p>
               </div>
@@ -126,31 +129,33 @@ export default class cart extends Component {
       return <p className="text-center">no item in cart</p>
     }
   }
+
   modalShow = () => {
     document.querySelector('#modal').setAttribute('class', 'modal is-active')
   }
   modalHide = () => {
     document.querySelector('#modal').setAttribute('class', 'modal')
   }
+
   render() {
     return (
-      <div>
-        <div>{this.showCart()}</div>
+      <div className="padding-top ">
+        <div className="cart-items">{this.showCart()}</div>
         <div className="row">
           <div className="col-6">&nbsp;</div>
           <div className="col-6">{this.showTotal()}</div>
         </div>
-
         <div id="modal" className="modal">
-          <div className="modal-background"></div>
-          <div id="modal-content" className="modal-content">
-            <Camera />
+          <div className="modal-background">
+            <div id="modal-content" className="modal-content">
+              <Camera />
+            </div>
+            <button
+              onClick={this.modalHide}
+              class="modal-close is-large"
+              aria-label="close"
+            ></button>
           </div>
-          <button
-            onClick={this.modalHide}
-            class="modal-close is-large"
-            aria-label="close"
-          ></button>
         </div>
       </div>
     )

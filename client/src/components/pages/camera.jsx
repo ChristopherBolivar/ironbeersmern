@@ -59,7 +59,7 @@ export default class camera extends Component {
     const imageSrc = this.webcam.getScreenshot()
     console.log(imageSrc)
     axios
-      .post('http://192.168.125.40:5000/api/image-upload', { imageSrc })
+      .post('http://10.0.0.44:5000/api/image-upload', { imageSrc })
       .then(doc => {
         var licInfo = doc.data.stuff.regions[0].lines.map(obj => {
           return obj.words.map(word => {

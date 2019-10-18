@@ -38,9 +38,9 @@ export default class allbeers extends Component {
   showbeers = () => {
     return this.props.beers.map((beer, i) => {
       return (
-        <div key={i} className="beer-div col-sm-4 col-xs-6 p-3">
+        <div key={i} className="beer-div col-sm-4 col-xs-6 padding-top">
           <div>
-            <h5 className="mb-0">{this.props.beers[i].name}</h5>
+            <h5 className=" mb-0">{this.props.beers[i].name}</h5>
 
             <small className="mt-0 mb-2">
               {this.props.beers[i].tagline}&nbsp; ABV:{this.props.beers[i].abv}

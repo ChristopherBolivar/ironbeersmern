@@ -1,7 +1,7 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
   font-family: sans-serif;
+  position: relative;
 }
 
 .info.info-danger {
@@ -10,16 +10,53 @@ body {
 .quant-input {
   width: 80px;
 }
+.Signup,
+.Login {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 8rem;
+}
+.cart-items .container {
+  padding: 0.3rem;
+}
+.cart-items .container:nth-child(odd) {
+  background: #ccc;
+}
 a {
-  color: blue;
+  color: #000;
   padding: 0 5px;
   text-decoration: unset;
 }
-
+.padding-top {
+  padding-top: 8rem;
+}
+.App-title {
+  margin-left: 8rem;
+}
 a.active {
   font-weight: bold;
 }
-
+header {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+}
+header a,
+header h1 {
+  color: #000;
+}
+.jumbo {
+  width: 100vh;
+  padding: 20rem;
+  text-align: center;
+  background-image: url('/beer-bg.jpg');
+  width: 100%;
+}
+.banner-text {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  color: #fff;
+  padding: 5rem;
+}
 .beer-d {
   height: 100px;
   overflow: scroll;
@@ -28,17 +65,28 @@ a.active {
 }
 .menu-links {
   text-align: right;
+  margin-top: 1rem;
+  z-index: 100;
+  color: #000 !important;
 }
-#modal-content {
-  background: #000;
-  color: #fff;
-  width: 500px;
-  height: 800px;
-  padding: 2rem;
-}
+
 .data label {
   display: block;
 }
-link {
-  color: #000 !important;
+
+#modal img {
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+.footer {
+  background: #ccc !important;
+  padding: 2rem !important;
+}
+.footer p {
+  padding: 1rem;
+  position: absolute;
+
+  text-align: center !important;
+  bottom: 0;
 }

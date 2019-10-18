@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import api from '../../api'
-import LoginForm from './loginForm'
 
 export default class Login extends Component {
   constructor(props) {
@@ -54,7 +53,12 @@ export default class Login extends Component {
             onChange={this.handleInputChange}
           />{' '}
           <br />
-          <button onClick={e => this.handleClick(e)}>Login</button>
+          <button
+            className="btn btn-success"
+            onClick={e => this.handleClick(e)}
+          >
+            Login
+          </button>
         </form>
         {this.state.message && (
           <div className="info info-danger">{this.state.message}</div>

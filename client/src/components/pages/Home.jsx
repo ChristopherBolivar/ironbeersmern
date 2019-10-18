@@ -70,19 +70,15 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <div className="jumbotron jumbotron-fluid">
-          <div className="container">
-            <h1 className="display-4">Fluid jumbotron</h1>
-            <p className="lead">
-              This is a modified jumbotron that occupies the entire horizontal
-              space of its parent.
-            </p>
-          </div>
+        <div className="jumbo">
+          <h1 className="banner-text">
+            Get beer delivered straight to your door
+          </h1>
         </div>
         <div>
-          <h4>Popular beer Options</h4>
+          <h4 className="text-center mt-4 pt-4">Popular beer Options</h4>
           <hr />
-          <div className="container">
+          <div className="container mt-4 p-4">
             <div className="row">{this.showbeers()}</div>
           </div>
         </div>

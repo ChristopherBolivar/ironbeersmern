@@ -16,10 +16,10 @@ export default class navbar extends Component {
     return (
       <header className="container-fluid">
         <div className="row">
-          <div className="col-3">
-            <h1 className="App-title">Iron Beers</h1>
+          <div className="col-7">
+            <h1 className="App-title">eBeers</h1>
           </div>
-          <div className="col-6 menu-links">
+          <div className="col-5 menu-links">
             <NavLink className="pl-1 pr-1" to="/" exact>
               Home
             </NavLink>
@@ -45,11 +45,7 @@ export default class navbar extends Component {
                 Logout
               </Link>
             )}
-            <NavLink className="pl-1 pr-1" to="/secret">
-              Secret
-            </NavLink>
-          </div>
-          <div className="col-2">
+
             <NavLink className="pl-1 pr-1" to="/shopping-cart">
               Cart
             </NavLink>

@@ -37,7 +37,7 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div className="Signup">
+      <div className="Signup mx-auto">
         <h2>Signup</h2>
         <form>
           Username:{' '}
@@ -45,14 +45,6 @@ export default class Signup extends Component {
             type="text"
             value={this.state.username}
             name="username"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          Name:{' '}
-          <input
-            type="text"
-            value={this.state.name}
-            name="name"
             onChange={this.handleInputChange}
           />{' '}
           <br />
@@ -64,7 +56,12 @@ export default class Signup extends Component {
             onChange={this.handleInputChange}
           />{' '}
           <br />
-          <button onClick={e => this.handleClick(e)}>Signup</button>
+          <button
+            className="btn btn-success"
+            onClick={e => this.handleClick(e)}
+          >
+            Signup
+          </button>
         </form>
         {this.state.message && (
           <div className="info info-danger">{this.state.message}</div>
