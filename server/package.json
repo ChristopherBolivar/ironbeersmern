@@ -19,7 +19,7 @@
     "express-session": "^1.15.6",
     "jquery": "^3.4.1",
     "jsdom": "^15.1.1",
-    "mongoose": "^5.4.15",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "nocache": "^2.0.0",
     "passport": "^0.4.0",
